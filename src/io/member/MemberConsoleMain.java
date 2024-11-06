@@ -3,6 +3,7 @@ package io.member;
 import io.member.impl.DataMemberRepository;
 import io.member.impl.FileMemberRepository;
 import io.member.impl.MemoryMemberRepository;
+import io.member.impl.ObjectMemberRepository;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,7 +13,8 @@ public class MemberConsoleMain {
 
 //    private static final MemberRepository repository = new MemoryMemberRepository();
 //    private static final MemberRepository repository = new FileMemberRepository();
-    private static final MemberRepository repository = new DataMemberRepository();
+//    private static final MemberRepository repository = new DataMemberRepository();
+    private static final MemberRepository repository = new ObjectMemberRepository();
 
     public static void main(String[] args) throws IOException {
 
