@@ -44,4 +44,8 @@ public class SocketCloseUtil {
             }
         }
     }
+
+    public static void closeAll(Socket socket) {
+        close(socket);
+    }
 }
