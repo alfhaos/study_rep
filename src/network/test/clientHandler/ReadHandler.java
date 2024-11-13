@@ -1,5 +1,7 @@
 package network.test.clientHandler;
 
+import network.test.Client;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -8,10 +10,13 @@ import static util.MyLogger.log;
 
 public class ReadHandler implements Runnable{
 
-    private DataInputStream input;
+    private final DataInputStream input;
 
-    public ReadHandler(DataInputStream input) {
+    private final Client client;
+
+    public ReadHandler(DataInputStream input, Client client) {
         this.input = input;
+        this.client = client;
     }
 
     @Override
@@ -23,7 +28,9 @@ public class ReadHandler implements Runnable{
                 log(received);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            log(e);
+        } finally {
+            client.close();
         }
 
     }

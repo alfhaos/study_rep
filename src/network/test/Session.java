@@ -31,8 +31,6 @@ public class Session implements Runnable{
 
     @Override
     public void run() {
-
-
         try{
             while(true) {
                 // 클라이언트로부터 문자 받기

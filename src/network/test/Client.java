@@ -17,7 +17,7 @@ public class Client {
     private final String host;
     private final int port;
 
-    private Socket socket;
+    private static Socket socket;
     private DataInputStream input;
     private DataOutputStream output;
     private ReadHandler readHandler;
@@ -35,8 +35,8 @@ public class Client {
 
             input = new DataInputStream(socket.getInputStream());
             output = new DataOutputStream(socket.getOutputStream());
-            readHandler = new ReadHandler(input);
-            writeHandler = new WriteHandler(output);
+            readHandler = new ReadHandler(input, this);
+            writeHandler = new WriteHandler(output, this);
 
             Thread thread1 = new Thread(readHandler);
             Thread thread2 = new Thread(writeHandler);
@@ -45,11 +45,7 @@ public class Client {
             thread2.start();
         } catch (IOException e) {
             log(e);
-        } finally {
-            close();
         }
-        log("연결 종료 : " + socket.isClosed());
-
     }
 
     public synchronized void close() {

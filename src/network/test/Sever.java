@@ -28,12 +28,12 @@ public class Sever {
                 log("소켓 연결 : " + socket);
 
                 Session session = new Session(socket, sessionManager);
-                sessionManager.add(session);
                 Thread thread = new Thread(session);
                 thread.start();
 
             }
         } catch (IOException e) {
+            e.printStackTrace();
             log("서버 소켓 종료 : " + e);
         }
 
