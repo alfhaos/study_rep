@@ -1,6 +1,7 @@
 package network.test.clientHandler;
 
 import network.test.Client;
+import network.test.constant.PublicMessage;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -29,14 +30,19 @@ public class WriteHandler implements Runnable{
                 String toSend = scanner.nextLine();
 
                 if (toSend.startsWith("/exit")) {
+                    output.writeUTF(toSend);
                     break;
                 }
                 try {
-                    output.writeUTF(toSend);
+                    if(toSend.startsWith("/")) {
+                        output.writeUTF(toSend);
+                    } else {
+                        writeMessage(toSend);
+                    }
+
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                log("client -> server: " + toSend);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,5 +50,10 @@ public class WriteHandler implements Runnable{
             client.close();
         }
 
+    }
+
+
+    public void writeMessage(String send) throws IOException {
+        output.writeUTF(PublicMessage.SENDMESSAGE.getMsg() + send);
     }
 }

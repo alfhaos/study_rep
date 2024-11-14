@@ -2,6 +2,7 @@ package network.test;
 
 import network.tcp.SocketCloseUtil;
 import network.tcp.v6.SessionManagerV6;
+import network.test.constant.PublicMessage;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -26,7 +27,6 @@ public class Session implements Runnable{
         this.input = new DataInputStream(socket.getInputStream());
         this.output =  new DataOutputStream(socket.getOutputStream());
         this.sessionManager = sessionManager;
-        this.sessionManager.add(this);
     }
 
     @Override
@@ -35,15 +35,23 @@ public class Session implements Runnable{
             while(true) {
                 // 클라이언트로부터 문자 받기
                 String received = input.readUTF();
-                log("client -> server: " + received);
                 String[] arr = received.split("\\|");
 
                 if(arr[0].equals(Command.EXIT.getContent())){
+                    sessionManager.messageAll(user.getName() + PublicMessage.EXIT.getMsg());
                     break;
                 } else if(arr[0].equals(Command.JOIN.getContent())) {
+                    this.sessionManager.add(this);
                     this.user = new User(arr[1]);
-                    output.writeUTF(user.getName() + " 님이 입장하셨습니다.");
                     sessionManager.joinUser(this);
+                } else if(arr[0].equals(Command.MESSAGE.getContent())) {
+                    sessionManager.messageAll(user.getName() + " : " + arr[1]);
+                } else if(arr[0].equals(Command.CHANGE.getContent())) {
+                    String oldName = user.getName();
+                    user.setName(arr[1]);
+                    sessionManager.messageAll(oldName + " -> " + user.getName() + PublicMessage.CHANGE.getMsg());
+                } else if(arr[0].equals(Command.USERS.getContent())) {
+                    sessionManager.userList(this);
                 }
 
             }
@@ -69,11 +77,6 @@ public class Session implements Runnable{
         SocketCloseUtil.closeAll(socket, input, output);
         closed = true;
         log("연결 종료 : " + socket);
-    }
-
-
-    public void joinUser(User user) throws IOException {
-        output.writeUTF(user.getName() + " 님이 입장하셨습니다.");
     }
 
     public DataOutputStream getOutput() {

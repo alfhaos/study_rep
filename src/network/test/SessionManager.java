@@ -1,6 +1,8 @@
 package network.test;
 
 
+import network.test.constant.PublicMessage;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
@@ -38,10 +40,37 @@ public class SessionManager {
         for (Session temp : sessions) {
             if(temp != session) {
                 DataOutputStream output = temp.getOutput();
-                output.writeUTF(session.getUser().getName() + " 님이 입장하셨습니다.");
+                output.writeUTF(session.getUser().getName() + PublicMessage.JOIN.getMsg());
+            }
+        }
+    }
+
+    public synchronized void messageAll(String msg) throws IOException {
+        for (Session temp : sessions) {
+            DataOutputStream output = temp.getOutput();
+            output.writeUTF(msg);
+        }
+    }
+
+
+    public void userList(Session session) throws IOException {
+
+        for (Session temp : sessions) {
+            if(temp == session) {
+                DataOutputStream output = temp.getOutput();
+                String[] users = userArr();
+                output.writeUTF(String.join("," , users));
             }
         }
     }
 
 
+    public String[] userArr() {
+        String[] users = new String[sessions.size()];
+        for(int i = 0 ; i < sessions.size() ; i++) {
+            users[i] = sessions.get(i).getUser().getName();
+        }
+
+        return users;
+    }
 }
