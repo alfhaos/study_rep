@@ -7,7 +7,9 @@ import java.util.concurrent.locks.ReentrantLock;
 import static com.example.javaadv1.util.MyLogger.log;
 import static com.example.javaadv1.util.ThreadUtils.sleep;
 
-
+/*
+*  if (!lock.tryLock(500, TimeUnit.MILLISECONDS)) {  시간을 설정하여 시간내에 락을 얻지 못할경우 return
+* */
 public class BankAccountV6 implements BankAccount {
 
     private int balance;

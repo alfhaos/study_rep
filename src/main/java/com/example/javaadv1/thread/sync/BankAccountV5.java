@@ -5,6 +5,9 @@ import java.util.concurrent.locks.ReentrantLock;
 import static com.example.javaadv1.util.MyLogger.log;
 import static com.example.javaadv1.util.ThreadUtils.sleep;
 
+/*
+*    if (!lock.tryLock()) { 을통해 lock을 획득하지 못할경우 바로 포기
+* */
 
 public class BankAccountV5 implements BankAccount {
 
