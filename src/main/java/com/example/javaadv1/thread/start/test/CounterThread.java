@@ -1,8 +1,6 @@
 package com.example.javaadv1.thread.start.test;
 
-import com.example.javaadv1.util.MyLogger;
-
-import static com.example.javaadv1.util.MyLogger.*;
+import static com.example.util.MyLogger.*;
 
 public class CounterThread {
 

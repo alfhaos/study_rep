@@ -3,8 +3,8 @@ package com.example.javaadv1.thread.sync;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import static com.example.javaadv1.util.MyLogger.log;
-import static com.example.javaadv1.util.ThreadUtils.sleep;
+import static com.example.util.MyLogger.log;
+import static com.example.util.ThreadUtils.sleep;
 /*
 * ReentrantLock을 이용해서 스레드별로 락을 획득
 * finally 을 활용해서 꼭 lock.unlock(); 호출

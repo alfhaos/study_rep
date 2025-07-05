@@ -2,8 +2,8 @@ package com.example.javaadv1.thread.sync;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import static com.example.javaadv1.util.MyLogger.log;
-import static com.example.javaadv1.util.ThreadUtils.sleep;
+import static com.example.util.MyLogger.log;
+import static com.example.util.ThreadUtils.sleep;
 
 /*
 *    if (!lock.tryLock()) { 을통해 lock을 획득하지 못할경우 바로 포기

@@ -3,7 +3,7 @@ package com.example.javaadv1.thread.control;
 
 import com.example.javaadv1.thread.start.HelloRunnable;
 
-import static com.example.javaadv1.util.MyLogger.log;
+import static com.example.util.MyLogger.log;
 
 public class ThreadInfoMain {
 

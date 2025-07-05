@@ -1,5 +1,5 @@
 package com.example.javaadv1.thread.start;
-import static com.example.javaadv1.util.MyLogger.log;
+import static com.example.util.MyLogger.log;
 
 public class InnerRunnableMainV2 {
 

@@ -1,7 +1,7 @@
 package com.example.javaadv1.thread.sync;
 
-import static com.example.javaadv1.util.MyLogger.log;
-import static com.example.javaadv1.util.ThreadUtils.sleep;
+import static com.example.util.MyLogger.log;
+import static com.example.util.ThreadUtils.sleep;
 
 
 public class BankAccountV2 implements BankAccount {

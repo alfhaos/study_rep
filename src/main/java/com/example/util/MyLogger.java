@@ -1,4 +1,4 @@
-package com.example.javaadv1.util;
+package com.example.util;
 
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;

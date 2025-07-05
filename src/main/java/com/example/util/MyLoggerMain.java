@@ -1,6 +1,6 @@
-package com.example.javaadv1.util;
+package com.example.util;
 
-import static com.example.javaadv1.util.MyLogger.log;
+import static com.example.util.MyLogger.log;
 
 public class MyLoggerMain {
 

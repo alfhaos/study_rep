@@ -1,6 +1,6 @@
 package com.example.javaadv1.thread.sync.test;
 
-import static com.example.javaadv1.util.MyLogger.log;
+import static com.example.util.MyLogger.log;
 
 public class SyncTest1BadMain {
 
